@@ -197,9 +197,9 @@
     "vite:inspect": "pnpm clean && electron-vite build --mode development && pnpm exec serve .vite-inspect",
     "start": "electron-vite preview",
     "start:debug": "cross-env ELECTRON_ENABLE_LOGGING=1 pnpm start",
-    "dev": "cross-env NODE_OPTIONS=--enable-source-maps electron-vite dev --watch",
+    "dev": "cross-env NODE_OPTIONS='--enable-source-maps --max-old-space-size=8192' electron-vite dev --watch",
     "dev:renderer": "cross-env NODE_OPTIONS=--enable-source-maps electron-vite dev",
-    "dev:debug": "cross-env ELECTRON_ENABLE_LOGGING=1 pnpm dev",
+    "dev:debug": "cross-env ELECTRON_ENABLE_LOGGING=1 pnpm dev --max-old-space-size=8192'",
     "clean": "del-cli dist && del-cli pack && del-cli .vite-inspect",
     "dist": "pnpm clean && pnpm build && pnpm electron-builder --win --mac --linux -p never",
     "dist:linux": "pnpm clean && pnpm build && pnpm electron-builder --linux -p never",
@@ -237,7 +237,6 @@
     "neverBuiltDependencies": []
   },
   "dependencies": {
-    "@electron-toolkit/tsconfig": "1.0.1",
     "@electron/remote": "2.1.2",
     "@ffmpeg.wasm/core-mt": "0.12.0",
     "@ffmpeg.wasm/main": "0.12.0",
@@ -273,6 +272,8 @@
     "fast-average-color": "9.5.0",
     "fast-equals": "5.2.2",
     "filenamify": "6.0.0",
+    "fs-extra": "^11.1.1",
+    "googleapis": "^118.0.0",
     "hanja": "1.1.4",
     "happy-dom": "17.4.4",
     "hono": "4.7.7",
@@ -288,6 +289,7 @@
     "lazy-var": "2.2.2",
     "node-html-parser": "7.0.1",
     "node-id3": "0.2.9",
+    "open": "^9.0.0",
     "peerjs": "1.5.4",
     "pinyin": "4.0.0-alpha.2",
     "segmentit": "2.0.3",
@@ -305,6 +307,7 @@
     "zod": "3.24.2"
   },
   "devDependencies": {
+    "@electron-toolkit/tsconfig": "^1.0.1",
     "@eslint/js": "9.24.0",
     "@malept/flatpak-bundler": "0.4.0",
     "@playwright/test": "1.51.1",
